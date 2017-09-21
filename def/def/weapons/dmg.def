@@ -97,7 +97,7 @@ entityDef weapon_dmg
 	"spread"					"0"
 
 	"inv_weapon"				"weapon_dmg"
-	"inv_start_ammo_dmg"		"10"
+	"inv_start_ammo_dmg"		"0"	//rtg8
 	"inv_item"					"1"
 	"inv_icon"					"gfx/guis/hud/icons/item_darkmatter.tga"
 	"inv_name"					"#str_107401"	

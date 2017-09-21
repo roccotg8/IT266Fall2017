@@ -88,7 +88,7 @@ entityDef weapon_railgun
 	"spread"				"0"
 
 	"inv_weapon"				"weapon_railgun"
-	"inv_start_ammo_railgun"		"10"
+	"inv_start_ammo_railgun"		"0"	//rtg8
 	"inv_item"				"1"
 	"inv_icon"				"gfx/guis/hud/icons/item_railgun"
 	"inv_name"				"#str_107408"

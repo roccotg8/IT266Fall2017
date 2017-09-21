@@ -89,7 +89,7 @@ entityDef weapon_hyperblaster
 
 	"weaponname"				"HyperBlaster"
 	"ammoType"					"ammo_hyperblaster"
-	"inv_start_ammo_hyperblaster"		"60"
+	"inv_start_ammo_hyperblaster"		"0"	//rtg8
 	"ammoRegenStep"				"5"
 	"ammoRegenTime"				"1500"
 	"clipSize"					"60"									// large for smooth regen
