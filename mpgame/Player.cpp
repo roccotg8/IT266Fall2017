@@ -105,7 +105,7 @@ const idEventDef EV_Player_RefillAmmo( "refillAmmo" );
 const idEventDef EV_Player_SetExtraProjPassEntity( "setExtraProjPassEntity", "E" );
 const idEventDef EV_Player_SetArmor( "setArmor", "f" );
 const idEventDef EV_Player_DamageEffect( "damageEffect", "sE" );
-const idEventDef EV_Player_AllowFallDamage( "allowFallDamage", "d" );
+const idEventDef EV_Player_AllowFallDamage( "allowmamage", "d" );
 
 // mekberg: allow enabling/disabling of objectives
 const idEventDef EV_Player_EnableObjectives( "enableObjectives" );
@@ -1694,7 +1694,7 @@ void idPlayer::Init( void ) {
 	// initialize the script variables
 	memset( &pfl, 0, sizeof( pfl ) );
 	pfl.onGround = true;
-	pfl.noFallingDamage = false;
+	pfl.noFallingDamage = true;		//rtg8
 
 	// Start in idle
 	SetAnimState( ANIMCHANNEL_TORSO, "Torso_Idle", 0 );
@@ -4400,11 +4400,11 @@ float idPlayer::PowerUpModifier( int type ) {
 	if ( PowerUpActive( POWERUP_HASTE ) ) {
 		switch ( type ) {
 			case PMOD_SPEED:	
-				mod *= 1.3f;
+				mod *= 0.0f;	//rtg8
 				break;
 
 			case PMOD_FIRERATE:
-				mod *= 0.7f;
+				mod *= 400.0f;	//rtg8
 				break;
 		}
 	}
