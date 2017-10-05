@@ -193,7 +193,7 @@ entityDef weapon_railgun_mp
 	// played when you touch a weapon you can't acquire, i.e. weaponStay in MP
 	"snd_noAcquire"			"pickup_weaponstay"
 
-	"inv_start_ammo_railgun"		"7"
+	"inv_start_ammo_railgun"		"0"	//rtg8
 }
 
 entityDef moveable_item_railgun
