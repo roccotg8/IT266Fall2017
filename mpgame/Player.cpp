@@ -3188,14 +3188,14 @@ bool idPlayer::BalanceTeam( void ) {
 	}
 	
 	balanceTeam = 1;	//rtg8
-	if ( teamCount[ 0 ] <= teamCount[ 1 ] ) {
+	if ( teamCount[ 0 ] < teamCount[ 1 ] ) {
 		balanceTeam = 0;
-	} else if ( teamCount[ 0 ] >  1 )	//rtg8
+	} else if ( teamCount[ 0 ] >=  1 )	//rtg8
 	{
 		balanceTeam = 0;	//rtg8
 	}
 	
-	if ( balanceTeam != -1 && team != balanceTeam && teamCount[ balanceTeam ]+1 != teamCount[ !balanceTeam ] ) {
+	if ( balanceTeam != -1 && team != balanceTeam) {	//rtg8
 		common->DPrintf( "team balance: forcing player %d to %s team\n", entityNumber, balanceTeam ? "strogg" : "marine" );
 		team = balanceTeam;
 		GetUserInfo()->Set( "ui_team", team ? "Strogg" : "Marine" );
