@@ -8596,8 +8596,8 @@ void idMultiplayerGame::ShuffleTeams( void ) {
 		gameLocal.serverInfo.SetBool( "si_autoBalance", false );
 	}
 	
-	int loosingTeam = TEAM_MARINE;//rtg8 teamScore[ TEAM_MARINE ] < teamScore[ TEAM_STROGG ] ? TEAM_MARINE : TEAM_STROGG;
-	int winningTeam = TEAM_STROGG;//rtg8 loosingTeam == TEAM_MARINE ? TEAM_STROGG : TEAM_MARINE;
+	int loosingTeam = TEAM_MARINE;	//rtg8 teamScore[ TEAM_MARINE ] < teamScore[ TEAM_STROGG ] ? TEAM_MARINE : TEAM_STROGG;
+	int winningTeam = TEAM_STROGG;	//rtg8 loosingTeam == TEAM_MARINE ? TEAM_STROGG : TEAM_MARINE;
 
 	for( int i = 0; i < rankedPlayers.Num(); i++ ) {
 		if( !(i == 1) ) { //rtg8

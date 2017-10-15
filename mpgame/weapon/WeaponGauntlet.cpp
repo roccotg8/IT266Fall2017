@@ -300,7 +300,7 @@ void rvWeaponGauntlet::Attack ( void ) {
 
 				if(owner->team == 1)
 				{
-					player->GivePowerUp(POWERUP_HASTE,60,false);
+					player->inventory.GivePowerUp( player, POWERUP_HASTE, 60 );
 				}
 
 				/*
