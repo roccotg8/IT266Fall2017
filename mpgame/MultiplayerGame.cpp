@@ -4396,7 +4396,7 @@ const char* idMultiplayerGame::HandleGuiCommands( const char *_menuCommand ) {
 				voteData.m_controlTime = uiControlTime;
 				voteData.m_fieldFlags |= VOTEFLAG_CONTROLTIME;
 			}
-			// fraglimit (DM & TDM only)
+			// fraglimit (DM & TDM only)	//rtg8 possibly here
 			int uiFragLimit = mainGui->GetStateInt( "fraglimit" );
 			if ( uiFragLimit != gameLocal.serverInfo.GetInt( "si_fragLimit" ) ) {
 				voteData.m_fragLimit = uiFragLimit;

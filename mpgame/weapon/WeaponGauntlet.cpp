@@ -279,6 +279,13 @@ void rvWeaponGauntlet::Attack ( void ) {
 		impactEffect->SetAxis ( tr.c.normal.ToMat3() );
 	}
 	
+
+	if(wsfl.altFire)
+	{
+		//Event_ApplyImpulse(0, directionFacing, strength);	//lunge rtg8
+	}
+
+
 	// Do damage?
 	if ( gameLocal.time > nextAttackTime ) {					
 		if ( ent ) {
@@ -300,7 +307,9 @@ void rvWeaponGauntlet::Attack ( void ) {
 
 				if(owner->team == 1)
 				{
-					player->inventory.GivePowerUp( player, POWERUP_HASTE, 60 );
+					player->inventory.GivePowerUp( player, POWERUP_HASTE, 60 );	//rtg8
+
+					gameLocal.mpGame.AddPlayerScore(gameLocal.GetLocalPlayer(),1);	//add one point to the person tagging
 				}
 
 				/*
