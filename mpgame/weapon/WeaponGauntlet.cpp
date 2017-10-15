@@ -297,10 +297,18 @@ void rvWeaponGauntlet::Attack ( void ) {
 				if ( ent->IsType( idPlayer::GetClassType() )) {    //rtg8
 					player = static_cast< idPlayer* >(ent);		//rtg8
 				}
+
+				if(owner->team == 1)
+				{
+					player->GivePowerUp(POWERUP_HASTE,60,false);
+				}
+
+				/*
 				if(player->team == 0)	//if on running team
 					player->GivePowerUp(POWERUP_HASTE,60,false);	//freeze player
 				if(player->team == owner->team && owner->team == 0)	//if you are running and tag a runner
 					player->GivePowerUp(POWERUP_HASTE,0,false);	//unfreeze them
+				*/
 
 			} else {
 				PlayLoopSound( LOOP_WALL );
