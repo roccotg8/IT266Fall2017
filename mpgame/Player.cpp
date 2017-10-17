@@ -4745,7 +4745,7 @@ bool idPlayer::GivePowerUp( int powerup, int time, bool team ) {
 		ServerSendEvent( EVENT_POWERUP, &msg, false, -1 );
 	}
 
-	inventory.GivePowerUp( this, powerup, time );
+	inventory.GivePowerUp( this, powerup, time );	//rtg here
 
 	// only start client effects in the same instance
 	// play all stuff in instance 0 for server netdemo - atm other instances are not recorded
