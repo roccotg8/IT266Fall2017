@@ -304,20 +304,12 @@ void rvWeaponGauntlet::Attack ( void ) {
 				if ( ent->IsType( idPlayer::GetClassType() )) {    //rtg8
 					player = static_cast< idPlayer* >(ent);		//rtg8
 				}
-				/*
-				if(owner->team == 1)
-				{
-					//inventory.GivePowerUp( player, POWERUP_HASTE, 60 );	//rtg8
-					player->GivePowerUp(POWERUP_HASTE,60,false);
-
-					gameLocal.mpGame.AddPlayerScore(gameLocal.GetLocalPlayer(),1);	//add one point to the person tagging
-				}
-				*/
 				
 				if(player->team == 0)	//if on running team
 				{
-					player->GivePowerUp(POWERUP_HASTE,60000,false);	//freeze player
-					player->inventory.GivePowerUp( player, POWERUP_HASTE, 60 );
+					player->GivePowerUp(POWERUP_HASTE,600000,false);	//freeze player
+					player->inventory.GivePowerUp( player, POWERUP_HASTE, 600000 );
+					gameLocal.mpGame.AddPlayerScore(gameLocal.GetLocalPlayer(),1);	//add one point to the person tagging
 				}
 				if(player->team == owner->team && owner->team == 0)	//if you are running and tag a runner
 				{
