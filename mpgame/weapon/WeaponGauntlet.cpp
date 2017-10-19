@@ -282,7 +282,7 @@ void rvWeaponGauntlet::Attack ( void ) {
 
 	if(wsfl.altFire)
 	{
-		//Event_ApplyImpulse(0, directionFacing, strength);	//lunge rtg8
+		//owner->ApplyImpulse( owner,  int id, const idVec3 &point, const idVec3 &impulse, 0 );	//lunge rtg8
 	}
 
 
@@ -309,7 +309,7 @@ void rvWeaponGauntlet::Attack ( void ) {
 				{
 					player->GivePowerUp(POWERUP_HASTE,600000,false);	//freeze player
 					player->inventory.GivePowerUp( player, POWERUP_HASTE, 600000 );
-					gameLocal.mpGame.AddPlayerScore(gameLocal.GetLocalPlayer(),1);	//add one point to the person tagging
+					gameLocal.mpGame.AddPlayerTeamScore(gameLocal.GetLocalPlayer(),1);	//add one point to the person tagging
 				}
 				if(player->team == owner->team && owner->team == 0)	//if you are running and tag a runner
 				{
