@@ -280,9 +280,13 @@ void rvWeaponGauntlet::Attack ( void ) {
 	}
 	
 
-	if(wsfl.altFire)
+	if(wsfl.zoom)
 	{
-		//owner->ApplyImpulse( owner,  int id, const idVec3 &point, const idVec3 &impulse, 0 );	//lunge rtg8
+		idVec3 delta;
+		delta.x = 0.0f;
+		delta.y = 0.0f;
+		delta.z = 30.0f;
+		owner->ApplyImpulse( owner, 0, owner->GetPhysics()->GetOrigin(), delta, 0 );	//lunge rtg8
 	}
 
 
