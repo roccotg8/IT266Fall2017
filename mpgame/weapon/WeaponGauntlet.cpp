@@ -278,54 +278,54 @@ void rvWeaponGauntlet::Attack ( void ) {
 		impactEffect->SetOrigin ( tr.endpos );
 		impactEffect->SetAxis ( tr.c.normal.ToMat3() );
 	}
-	
-
-	if(wsfl.zoom)
-	{
-		idVec3 delta;
-		delta.x = 0.0f;
-		delta.y = 0.0f;
-		delta.z = 30.0f;
-		owner->ApplyImpulse( owner, 0, owner->GetPhysics()->GetOrigin(), delta, 0 );	//lunge rtg8
-	}
-
 
 	// Do damage?
 	if ( gameLocal.time > nextAttackTime ) {					
-		if ( ent ) {
-			if ( ent->fl.takedamage ) {
-				float dmgScale = 1.0f;
-				dmgScale *= owner->PowerUpModifier( PMOD_MELEE_DAMAGE );
-				ent->Damage ( owner, owner, playerViewAxis[0], spawnArgs.GetString ( "def_damage" ), dmgScale, 0 );
-				StartSound( "snd_hit", SND_CHANNEL_ANY, 0, false, NULL );
-				if ( ent->spawnArgs.GetBool( "bleed" ) ) {
-					PlayLoopSound( LOOP_FLESH );
+		if(wsfl.alternateFire)	//rtg8
+		{
+			idVec3 delta;
+			delta.x = 0.0f;
+			delta.y = 0.0f;
+			delta.z = 30.0f;
+			owner->ApplyImpulse( owner, 0, owner->GetPhysics()->GetOrigin(), delta, 0 );	//lunge rtg8
+		}
+		else
+		{
+			if ( ent ) {
+				if ( ent->fl.takedamage ) {
+					float dmgScale = 1.0f;
+					dmgScale *= owner->PowerUpModifier( PMOD_MELEE_DAMAGE );
+					ent->Damage ( owner, owner, playerViewAxis[0], spawnArgs.GetString ( "def_damage" ), dmgScale, 0 );
+					StartSound( "snd_hit", SND_CHANNEL_ANY, 0, false, NULL );
+					if ( ent->spawnArgs.GetBool( "bleed" ) ) {
+						PlayLoopSound( LOOP_FLESH );
+					} else {
+						PlayLoopSound( LOOP_WALL );
+					}
+				
+					idPlayer * player;	//rtg8
+					if ( ent->IsType( idPlayer::GetClassType() )) {    //rtg8
+						player = static_cast< idPlayer* >(ent);		//rtg8
+					}
+				
+					if(player->team == 0)	//if on running team
+					{
+						player->GivePowerUp(POWERUP_HASTE,600000,false);	//freeze player
+						player->inventory.GivePowerUp( player, POWERUP_HASTE, 600000 );
+						gameLocal.mpGame.AddPlayerTeamScore(gameLocal.GetLocalPlayer(),1);	//add one point to the person tagging
+					}
+					if(player->team == owner->team && owner->team == 0)	//if you are running and tag a runner
+					{
+						player->GivePowerUp(POWERUP_HASTE,0,false);	//unfreeze them
+						player->inventory.GivePowerUp( player, POWERUP_HASTE, 0 );
+					}
+
 				} else {
 					PlayLoopSound( LOOP_WALL );
 				}
-				
-				idPlayer * player;	//rtg8
-				if ( ent->IsType( idPlayer::GetClassType() )) {    //rtg8
-					player = static_cast< idPlayer* >(ent);		//rtg8
-				}
-				
-				if(player->team == 0)	//if on running team
-				{
-					player->GivePowerUp(POWERUP_HASTE,600000,false);	//freeze player
-					player->inventory.GivePowerUp( player, POWERUP_HASTE, 600000 );
-					gameLocal.mpGame.AddPlayerTeamScore(gameLocal.GetLocalPlayer(),1);	//add one point to the person tagging
-				}
-				if(player->team == owner->team && owner->team == 0)	//if you are running and tag a runner
-				{
-					player->GivePowerUp(POWERUP_HASTE,0,false);	//unfreeze them
-					player->inventory.GivePowerUp( player, POWERUP_HASTE, 0 );
-				}
-
 			} else {
-				PlayLoopSound( LOOP_WALL );
+				PlayLoopSound( LOOP_NONE );
 			}
-		} else {
-			PlayLoopSound( LOOP_NONE );
 		}
 		nextAttackTime = gameLocal.time + fireRate;
 	}
