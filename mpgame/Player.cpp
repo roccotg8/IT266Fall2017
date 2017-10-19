@@ -8689,6 +8689,7 @@ idPlayer::AdjustSpeed
 */
 void idPlayer::AdjustSpeed( void ) {
 	float speed;
+	float crouchSpeed;	//rtg8
 
 	if ( spectating ) {
 		speed = pm_spectatespeed.GetFloat();
@@ -8710,7 +8711,10 @@ void idPlayer::AdjustSpeed( void ) {
 		speed *= 0.33f;
 	}
 
-	physicsObj.SetSpeed( speed, pm_crouchspeed.GetFloat() );
+	crouchSpeed = pm_crouchspeed.GetFloat();	//rtg8
+	crouchSpeed *= PowerUpModifier(PMOD_SPEED);	//rtg8
+
+	physicsObj.SetSpeed( speed, crouchSpeed );	//rtg8
 }
 
 /*
