@@ -279,8 +279,18 @@ void rvWeaponGauntlet::Attack ( void ) {
 		impactEffect->SetAxis ( tr.c.normal.ToMat3() );
 	}
 
+	if(wsfl.alternateFire)	//rtg8
+	{
+		idVec3 delta;
+		delta.x = 0.0f;
+		delta.y = 0.0f;
+		delta.z = 30.0f;
+		owner->ApplyImpulse( owner, 0, owner->GetPhysics()->GetOrigin(), delta, 0 );	//lunge rtg8
+	}
+	
 	// Do damage?
 	if ( gameLocal.time > nextAttackTime ) {					
+		/*
 		if(wsfl.alternateFire)	//rtg8
 		{
 			idVec3 delta;
@@ -289,8 +299,9 @@ void rvWeaponGauntlet::Attack ( void ) {
 			delta.z = 30.0f;
 			owner->ApplyImpulse( owner, 0, owner->GetPhysics()->GetOrigin(), delta, 0 );	//lunge rtg8
 		}
-		else
-		{
+		*/
+		//else
+		//{
 			if ( ent ) {
 				if ( ent->fl.takedamage ) {
 					float dmgScale = 1.0f;
@@ -326,7 +337,7 @@ void rvWeaponGauntlet::Attack ( void ) {
 			} else {
 				PlayLoopSound( LOOP_NONE );
 			}
-		}
+		//}
 		nextAttackTime = gameLocal.time + fireRate;
 	}
 }
